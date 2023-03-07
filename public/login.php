@@ -14,13 +14,13 @@ $username_err = $password_err = $login_err = "";
 
 if($_SERVER['REQUEST_METHOD'] == "POST") {
     if (empty(trim($_POST['username']))) {
-        $username_err = "Bro, you fookin stoopid or smth? You need to ENTER your USERNAME or EMAIL ADRESS biatch";
+        $username_err = "Skriv inn ett brukernavn.";
     } else {
         $username = trim($_POST['username']);
     }
 
     if (empty(trim($_POST['password']))) {
-        $password_err = "ENTER YO FOOKIN PASSWORD";
+        $password_err = "Skriv inn ett passord.";
     } else {
         $password = trim($_POST['password']);
     }
@@ -44,14 +44,14 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
                             header("location: dashboard.php");
                         } else {
-                            $login_err = "HOL UP, WAIT A MINUTE, SUM AINT RIGHT";
+                            $login_err = "Feil brukernavn eller passord.";
                         }
                     }
                 } else {
-                    $login_err = "HOL UP, WAIT A MINUTE, SUM AINT RIGHT";
+                    $login_err = "Feil brukernavn eller passord.";
                 }
             } else {
-                echo "Woopsies! Seems like I've made an oopsie. A wittle fucky wucky";
+                echo "Oops! Noe gikk galt. Prøv igjen senere.";
             }
             mysqli_stmt_close($stmt);
         }
@@ -82,7 +82,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 <body>
     <div class="wrapper">
         <h2>Login</h2>
-        <p>Fill in yo fookin credentials btch.</p>
+        <p>Fyll inn dine detaljer nedenfor.</p>
 
         <?php
             if(!empty($login_err)) {
@@ -92,7 +92,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Brukernavn</label>
                 <input
                     type="text"
                     name="username"
@@ -102,7 +102,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
                 <span class="invalid-feedback"><?php echo $username_err ?></span>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Passord</label>
                 <input
                     type="password"
                     name="password"
@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST") {
             <div class="form-group">
                 <input type="submit" value="Login" class="btn btn-primary">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Har du ikke en bruker? <a href="register.php">Registrer her</a>.</p>
         </form>
     </div>
 </body>

@@ -26,13 +26,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     </style>
 </head>
 <body>
-    <h1 class="my-5">Whasgood <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>. Welcome to da hood</h1>
+    <h1 class="my-5">Hei, <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>.</h1>
     <label>Online users</label>
     <ul id="onlineUsers">
+        <li><?php echo htmlspecialchars($_SESSION['username']) ?></li>
     </ul>
     <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset yo password cuz yo stoopid ass forgot it</a>
-        <a href="logout.php" class="btn btn-warning">Sign out of yo fookin account</a>
+        <a href="reset-password.php" class="btn btn-warning">Reset passord.</a>
+        <a href="logout.php" class="btn btn-warning">Log ut av brukeren.</a>
     </p>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

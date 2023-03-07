@@ -7,9 +7,9 @@ $username_err = $password_err = $confirm_password_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty(trim($_POST['username']))) {
-        $username_err = "ENTER A FOOKIN USERNAME FOR GODS SAKE";
+        $username_err = "Skriv inn et brukernavn.";
     } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST['username']))) {
-        $username_err = "Da username man, it can only contain lettars like, a b c d e f g h and stuff. and like 0 1 2 3 4 5 yeah. Oh, and eyah, dont forget the _";
+        $username_err = "Brukernavnet kan bare inneholde bokstaver, tall og understrek.";
     } else {
         $sql = "SELECT id FROM users WHERE username = ?";
         if ($stmt = mysqli_prepare($link, $sql)) {
@@ -18,29 +18,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (mysqli_stmt_execute($stmt)) {
                 mysqli_stmt_store_result($stmt);
                 if (mysqli_stmt_num_rows($stmt) == 1) {
-                    $username_err = "Brotha, this is taken already. Try again brotha";
+                    $username_err = "Dette brukernavnet er opptatt.";
                 } else {
                     $username = trim($_POST['username']);
                 }
             } else {
-                echo "Woopsies! Seems like I've made an oopsie. A wittle fucky wucky";
+                echo "Oops! Noe gikk galt. Prøv igjen senere.";
             }
             mysqli_stmt_close($stmt);
         }
     }
     if (empty(trim($_POST['password']))) {
-        $password_err = "Man. Come on now. Enter a god damn password-";
+        $password_err = "Skriv inn ett passord.";
     } elseif (strlen(trim($_POST['password'])) < 6) {
-        $password_err = "YO! MAN! YOU NEED MORE THAN 5 CHARACTER MY BROTHER!";
+        $password_err = "Passordet krever 6 eller flere tegn.";
     } else {
         $password = trim($_POST['password']);
     }
     if (empty(trim($_POST['confirm_password']))) {
-        $confirm_password_err = "Brotha. Why wont you confirm da password?? You forgot already?";
+        $confirm_password_err = "Skriv inn passordet igjen.";
     } else {
         $confirm_password = trim($_POST['confirm_password']);
         if (empty($password_err) && ($password != $confirm_password)) {
-            $confirm_password_err = "YO YOR PASSOWRD AINT MATHCHIN, THIS AINT TINDER";
+            $confirm_password_err = "Passordene er ikke like.";
         }
     }
     if (empty($username_err) && empty($password_err) && empty($confirm_password_err)) {
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (mysqli_stmt_execute($stmt)) {
                 header("location: login.php");
             } else {
-                echo "Woopsies! Seems like I've made an oopsie. A wittle fucky wucky";
+                echo "Oops! Noe gikk galt. Prøv igjen senere.";
             }
             mysqli_stmt_close($stmt);
         }
@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="wrapper">
         <h2>Register</h2>
-        <p>Fill in yo fookin credentials btch.</p>
+        <p>Fyll inn dine detaljer nedenfor.</p>
 
         <?php
             if(!empty($login_err)) {
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form-group">
-                <label for="username">Username</label>
+                <label for="username">Brukernavn</label>
                 <input
                     type="text"
                     name="username"
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="invalid-feedback"><?php echo $username_err ?></span>
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="password">Passord</label>
                 <input
                     type="password"
                     name="password"
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <span class="invalid-feedback"><?php echo $password_err ?></span>
             </div>
             <div class="form-group">
-                <label for="confirm_password">Confirm Password</label>
+                <label for="confirm_password">Konfirmer passord</label>
                 <input
                     type="password"
                     name="confirm_password"
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input type="submit" value="Register" class="btn btn-primary">
                 <input type="reset" value="Reset" class="btn btn-secondary">
             </div>
-            <p>Already have an account? <a href="login.php">Login now</a>.</p>
+            <p>Har du allerede en bruker? <a href="login.php">Login her</a>.</p>
         </form>
     </div>
 </body>
