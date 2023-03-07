@@ -9,9 +9,22 @@ function pingUser() {
     $sql = "UPDATE users SET last_activity = CURRENT_TIMESTAMP() WHERE id = $user_id";
 
     if(mysqli_query($link, $sql)) {
-        return "Record updated successfully";
+        // echo "Record updated successfully";
     } else {
-        return "Error updating record: " . mysqli_error($link);
+        // echo "Error updating record: " . mysqli_error($link);
+    }
+
+    $sql = "SELECT username FROM users WHERE last_activity > DATE_SUB(NOW(), INTERVAL 1 MINUTE)";
+    $result = mysqli_query($link, $sql);
+    $usernames = array();
+
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $usernames[] = $row["username"];
+        }
+        return $usernames;
+    } else {
+        return "No users online.";
     }
 
     mysqli_close($link);

@@ -27,6 +27,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 </head>
 <body>
     <h1 class="my-5">Whasgood <b><?php echo htmlspecialchars($_SESSION['username']); ?></b>. Welcome to da hood</h1>
+    <label>Online users</label>
+    <ul id="onlineUsers">
+    </ul>
     <p>
         <a href="reset-password.php" class="btn btn-warning">Reset yo password cuz yo stoopid ass forgot it</a>
         <a href="logout.php" class="btn btn-warning">Sign out of yo fookin account</a>

@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form-group">
-                <label for="username">Email or username</label>
+                <label for="username">Username</label>
                 <input
                     type="text"
                     name="username"
