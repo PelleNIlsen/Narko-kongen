@@ -31,5 +31,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         <a href="reset-password.php" class="btn btn-warning">Reset yo password cuz yo stoopid ass forgot it</a>
         <a href="logout.php" class="btn btn-warning">Sign out of yo fookin account</a>
     </p>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="assetts/dashboard.js"></script>
 </body>
 </html>
