@@ -1,2 +1,2 @@
-# To-do with login
- A to-do app with login
+# Narko-Kongen
+utvikling av et tekstbasert spill kallt narko-kongen.
